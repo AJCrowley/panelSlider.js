@@ -1,0 +1,34 @@
+$(document).ready
+(
+	function()
+	{
+		var slider = new PanelSlider
+		(
+			$("div#panelSlider"),
+			{
+				transition: PanelSlider.prototype.Transitions.SLIDE_V
+			}
+		);
+		$("button#btnPrev").click
+		(
+			function()
+			{
+				slider.prev();
+			}
+		);
+		$("button#btnNext").click
+		(
+			function()
+			{
+				slider.next();
+			}
+		);
+		$("button#btnThree").click
+		(
+			function()
+			{
+				slider.goto(3);
+			}
+		);
+	}
+);

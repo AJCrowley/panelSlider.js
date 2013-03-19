@@ -1,0 +1,18 @@
+*
+{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+html,
+body
+{
+	height: 100%;
+	-webkit-overflow-scrolling: touch;
+}
+
+:focus
+{
+	outline: none !important;
+}
