@@ -40,6 +40,7 @@ autoSlide:
 	enabled: [boolean(false): enable auto slideshow],
 	delay: [int(5000): time in ms between slides],
 	pauseOnMouseOver: [bool(true): pause slideshow when mouse is over]
+}
 ```
 Functions:
 ```js
