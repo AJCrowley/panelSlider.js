@@ -2,13 +2,20 @@ $(document).ready
 (
 	function()
 	{
+		// instantiate slider
 		var slider = new PanelSlider
 		(
 			$("div#panelSlider"),
 			{
-				transition: PanelSlider.prototype.Transitions.SLIDE_V
+				transition: PanelSlider.prototype.Transitions.SLIDE_H,
+				autoSlide:
+				{
+					enabled: true,
+					delay: 2000
+				}
 			}
 		);
+		// assign action to prev button
 		$("button#btnPrev").click
 		(
 			function()
@@ -16,6 +23,7 @@ $(document).ready
 				slider.prev();
 			}
 		);
+		// assign action to next button
 		$("button#btnNext").click
 		(
 			function()
@@ -23,11 +31,21 @@ $(document).ready
 				slider.next();
 			}
 		);
+		// assign action to goto 3 button
 		$("button#btnThree").click
 		(
 			function()
 			{
 				slider.goto(3);
+			}
+		);
+		// listen for panel changes
+		$(slider).bind
+		(
+			PanelSlider.prototype.events.PANEL_CHANGED,
+			function(event)
+			{
+				console.log(event.currentPanel);
 			}
 		);
 	}
