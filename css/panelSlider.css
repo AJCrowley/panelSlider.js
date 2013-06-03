@@ -8,6 +8,11 @@
 	display: none; /* don't show until we're ready */
 }
 
+.panelSlider a
+{
+	cursor: pointer;
+}
+
 .panelSlider div.panel
 {
 	position: absolute;

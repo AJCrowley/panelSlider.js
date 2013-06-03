@@ -114,7 +114,7 @@
 					(
 						$("<div>").attr("id", "panelSliderControls").append
 						(
-							$("<a>").attr("id", "panelSliderPrev").attr("href", "javascript:void(0);").click
+							$("<a>").attr("id", "panelSliderPrev").click
 							(
 								function()
 								{
@@ -123,7 +123,7 @@
 							)
 						).append
 						(
-							$("<a>").attr("id", "panelSliderNext").attr("href", "javascript:void(0);").click
+							$("<a>").attr("id", "panelSliderNext").click
 							(
 								function()
 								{
