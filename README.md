@@ -34,7 +34,8 @@ transition:
 		PanelSlider.prototype.Transitions.SLIDE_V
 ],
 transitionLength: [int: transition time in ms],
-easing: [string: easing function, linear and swing are built into jQuery, more in jQueryUI];
+easing: [string: easing function, linear and swing are built into jQuery, more in jQueryUI],
+showControls: [boolean: display prev/next buttons as part of slider],
 autoSlide:
 {
 	enabled: [boolean(false): enable auto slideshow],

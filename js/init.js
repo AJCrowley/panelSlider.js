@@ -12,7 +12,8 @@ $(document).ready
 				{
 					enabled: true,
 					delay: 2000
-				}
+				},
+				showControls: true
 			}
 		);
 		// assign action to prev button

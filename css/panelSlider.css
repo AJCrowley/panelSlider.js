@@ -1,0 +1,51 @@
+.panelSlider
+{
+	position: relative;
+	width: 100%;
+	min-height: 150px;
+	height: auto;
+	overflow: hidden;
+	display: none; /* don't show until we're ready */
+}
+
+.panelSlider div.panel
+{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+.panelSlider h2
+{
+	display: none;
+}
+
+.panelSlider div#panelSliderControls
+{
+	display: block;
+	position: absolute;
+	width: 100px;
+	height: 47px;
+	bottom: 9px;
+	right: 9px;
+}
+
+.panelSlider div#panelSliderControls a
+{
+	display: inline-block;
+	width: 47px;
+	height: 47px;
+}
+
+.panelSlider div#panelSliderControls a#panelSliderNext
+{
+	background-image: url(../img/panelSlider_next.png);
+}
+
+.panelSlider div#panelSliderControls a#panelSliderPrev
+{
+	background-image: url(../img/panelSlider_prev.png);
+	margin-right: 4px;
+}

@@ -1,6 +1,6 @@
-window.PanelSlider = function(element, options)
+window.PanelSlider = function(element, options, $)
 {
-	var $ = jQuery;
+	$ = $ || jQuery;
 	// return immediately if element doesn't exist
 	if(!element)
 	{
@@ -21,6 +21,7 @@ window.PanelSlider = function(element, options)
 			delay: 5000,
 			pauseOnMouseOver: true
 		},
+		showControls: false,
 		initialPanel: 1,
 		wrap: true,
 		transition: this.Transitions.SLIDE_H,
@@ -49,6 +50,8 @@ PanelSlider.prototype =
 
 	init: function(element, options)
 	{
+		// store self ref
+		var self = this;
 		// merge autoslide options, otherwise they'll get overwritten
 		if(options.autoSlide !== undefined)
 		{
@@ -60,15 +63,17 @@ PanelSlider.prototype =
 		this.element = element;
 		// hide all child divs
 		this.panelCount = $(this.element).children("div").length;
+		// add panel class to children
+		$(this.element).children("div").addClass("panel");
 		// set initial panel
 		this.currentPanel = this.options.initialPanel;
 		// and show with no direction
 		this.showCurrent(0);
+		// make sure we're visible
+		$(this.element).show();
 		// are we on auto slide?
 		if(this.options.autoSlide.enabled)
 		{
-			// store self ref
-			var self = this;
 			// if we want to pause on mouseover
 			if(this.options.autoSlide.pauseOnMouseOver)
 			{
@@ -78,22 +83,14 @@ PanelSlider.prototype =
 					"mouseenter",
 					function()
 					{
-						clearInterval(self.autoSlideTimer)
+						clearInterval(self.autoSlideTimer);
 					}
 				).bind
 				(
 					"mouseleave",
 					function()
 					{
-						clearInterval(self.autoSlideTimer);
-						self.autoSlideTimer = setInterval
-						(
-							function()
-							{
-								self.next();
-							},
-							self.options.autoSlide.delay
-						);
+						self.resetTimer();
 					}
 				);
 			}
@@ -104,6 +101,33 @@ PanelSlider.prototype =
 					self.next();
 				},
 				this.options.autoSlide.delay
+			);
+		}
+		// are we showing controls?
+		if(options.showControls)
+		{
+			// add an anchor for prev
+			$(this.element).append
+			(
+				$("<div>").attr("id", "panelSliderControls").append
+				(
+					$("<a>").attr("id", "panelSliderPrev").attr("href", "javascript:void(0);").click
+					(
+						function()
+						{
+							self.prev();
+						}
+					)
+				).append
+				(
+					$("<a>").attr("id", "panelSliderNext").attr("href", "javascript:void(0);").click
+					(
+						function()
+						{
+							self.next();
+						}
+					)
+				)
 			);
 		}
 	},
@@ -129,9 +153,9 @@ PanelSlider.prototype =
 		if(!this.transitioning)
 		{
 			// assume by default the panel will change
-			var panelChanged = true;
+			var panelChanged = true,
 			// calculate direction
-			var direction = this.currentPanel > index ? -1 : 1;
+			direction = this.currentPanel > index ? -1 : 1;
 			// did we go past the start?
 			if(index < 1)
 			{
@@ -175,6 +199,20 @@ PanelSlider.prototype =
 				this.showCurrent(direction);
 			}
 		}
+	},
+
+	resetTimer: function()
+	{
+		var self = this;
+		clearInterval(self.autoSlideTimer);
+		self.autoSlideTimer = setInterval
+		(
+			function()
+			{
+				self.next();
+			},
+			self.options.autoSlide.delay
+		);
 	},
 
 	showCurrent: function(direction)
