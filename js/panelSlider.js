@@ -1,7 +1,7 @@
 (
-	function()
+	function(context)
 	{
-		window.PanelSlider = function(element, options, $)
+		context.PanelSlider = function(element, options, $)
 		{
 			$ = $ || jQuery;
 			// return immediately if element doesn't exist
@@ -362,4 +362,4 @@
 			}
 		};
 	}
-)();
+)(document);
